@@ -10,21 +10,70 @@ namespace emanetV2.Admin.Controllers
     {
         public ActionResult Index()
         {
-            return View();
+            AdminListViewModel viewModel = new AdminListViewModel();
+            return View(viewModel);
         }
 
-        public ActionResult About()
+        public ActionResult New()
         {
-            ViewBag.Message = "Your application description page.";
-
             return View();
         }
 
-        public ActionResult Contact()
+        [HttpPost]
+        public ActionResult New(AdminNewViewModel viewModel)
         {
-            ViewBag.Message = "Your contact page.";
+            if (!ModelState.IsValid)
+                return View(viewModel);
+
+            return RedirectToAction("Edit", new { adminId = 1 });
+        }
+
+        public ActionResult Edit(int? adminId)
+        {
+            if (adminId == null)
+                return RedirectToAction("Index");
+
+            // Find Admin
+            // Admin to viewModel
+            AdminEditViewModel viewModel = new AdminEditViewModel();
+
+            return View(viewModel);
+        }
+        [HttpPost]
+        public ActionResult Edit(AdminEditViewModel viewModel)
+        {
+            if (!ModelState.IsValid)
+                return View(viewModel);
 
             return View();
         }
+
+        public ActionResult Publish(int? adminId)
+        {
+            if (adminId == null)
+                return RedirectToAction("Index");
+
+            // Publish
+            return RedirectToAction("Index");
+        }
+
+        public ActionResult Draft(int? adminId)
+        {
+            if (adminId == null)
+                return RedirectToAction("Index");
+
+            // Draft
+            return RedirectToAction("Index");
+        }
+
+        public ActionResult Remove(int? adminId)
+        {
+            if (adminId == null)
+                return RedirectToAction("Index");
+
+            // Remove
+            return RedirectToAction("Index");
+        }
+
     }
 }

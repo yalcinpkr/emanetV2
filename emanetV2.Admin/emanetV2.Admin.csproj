@@ -174,14 +174,29 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AnimalSizeController.cs" />
+    <Compile Include="Controllers\AnimalTypeController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\MemberController.cs" />
+    <Compile Include="Controllers\PublicationController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\AdminListViewModel.cs" />
+    <Compile Include="Models\AnimalSizeEditViewModel.cs" />
+    <Compile Include="Models\AnimalSizeListViewModel.cs" />
+    <Compile Include="Models\AnimalSizeNewViewModel.cs" />
+    <Compile Include="Models\AnimalTypeEditViewModel.cs" />
+    <Compile Include="Models\AnimalTypeListViewModel.cs" />
+    <Compile Include="Models\AnimalTypeNewViewModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\MemberListViewModel.cs" />
+    <Compile Include="Models\PublicationEditViewModel.cs" />
+    <Compile Include="Models\PublicationListViewModel.cs" />
+    <Compile Include="Models\PublicationNewViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -241,6 +256,15 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\AnimalSize\Edit.cshtml" />
+    <Content Include="Views\AnimalSize\New.cshtml" />
+    <Content Include="Views\AnimalSize\Index.cshtml" />
+    <Content Include="Views\AnimalType\Index.cshtml" />
+    <Content Include="Views\AnimalType\New.cshtml" />
+    <Content Include="Views\AnimalType\Edit.cshtml" />
+    <Content Include="Views\Member\Index.cshtml" />
+    <Content Include="Views\Publication\Index.cshtml" />
+    <Content Include="Views\Publication\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

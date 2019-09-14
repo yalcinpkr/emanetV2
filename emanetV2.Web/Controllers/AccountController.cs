@@ -423,6 +423,117 @@ namespace emanetV2.Web.Controllers
             base.Dispose(disposing);
         }
 
+        public ActionResult PublicationList()
+        {
+            MemberPublicationListViewModel viewModel = new MemberPublicationListViewModel()
+            {
+                Publications = _publicationService.GetAllWeb()
+            };
+
+            return View(viewModel);
+        }
+
+        public ActionResult NewPublication()
+        {
+            ViewBag.AnimalSizeId = new SelectList(_animalSizeService.GetAllWeb(), "Id", "Name");
+            ViewBag.AnimalTypeId = new SelectList(_animalTypeService.GetAllWeb(), "Id", "Name");
+            return View();
+        }
+        [HttpPost]
+        public ActionResult NewPublication(MemberNewPublicationViewModel viewModel)
+        {
+            if (!ModelState.IsValid)
+                return View(viewModel);
+            var newPublication = new Publication()
+            {
+                Id = viewModel.Id,
+                Title = viewModel.Title,
+                Description = viewModel.Description,
+                Slug = viewModel.Slug,
+                Note = viewModel.Note,
+                AnimalSizeId = viewModel.AnimalSizeId,
+                AnimalTypeId = viewModel.AnimalTypeId,
+                StatusId = (int)Statuses.Draft
+            };
+            _publicationService.New(newPublication);
+            return RedirectToAction("Index", "Home");
+
+        }
+
+        public ActionResult EditPublication(int? publicationId)
+        {
+            ViewBag.AnimalSizeId = new SelectList(_animalSizeService.GetAllWeb(), "Id", "Name");
+            ViewBag.AnimalTypeId = new SelectList(_animalTypeService.GetAllWeb(), "Id", "Name");
+
+            if (publicationId == null)
+                return RedirectToAction("PublicationList");
+
+            var findPublication = _publicationService.GetAdmin(publicationId);
+
+            if (findPublication == null)
+                return RedirectToAction("PublicationList");
+            var viewModel = new MemberPublicationEditViewModel()
+            {
+                Id = findPublication.Id,
+                Title = findPublication.Title,
+                Description = findPublication.Description,
+                Slug = findPublication.Slug,
+                Note = findPublication.Note,
+                AnimalSizeId = findPublication.AnimalSizeId,
+                AnimalTypeId = findPublication.AnimalTypeId,
+                StatusId = (int)Statuses.Draft
+            };
+            return View(viewModel);
+        }
+        [HttpPost]
+        public ActionResult EditPublication(MemberPublicationEditViewModel viewModel)
+        {
+            if (!ModelState.IsValid)
+                return View(viewModel);
+
+            Publication editedMemberPublication = new Publication()
+            {
+                Id = viewModel.Id,
+                Title = viewModel.Title,
+                Description = viewModel.Description,
+                Slug = viewModel.Slug,
+                Note = viewModel.Note,
+                AnimalSizeId = viewModel.AnimalSizeId,
+                AnimalTypeId = viewModel.AnimalTypeId,
+                StatusId = (int)Statuses.Draft,
+
+            };
+            _publicationService.Edit(editedMemberPublication);
+            return RedirectToAction("PublicationList");
+        }
+
+        public ActionResult PublishPublication(int? publicationId)
+        {
+            if (publicationId == null)
+                return RedirectToAction("PublicationList");
+
+            // Publish
+            return RedirectToAction("PublicationList");
+        }
+
+        public ActionResult DraftPublication(int? publicationId)
+        {
+            if (publicationId == null)
+                return RedirectToAction("PublicationList");
+
+            // Draft
+            return RedirectToAction("PublicationList");
+        }
+
+        public ActionResult RemovePublication(int? publicationId)
+        {
+            if (publicationId == null)
+                return RedirectToAction("PublicationList");
+
+            // Remove
+            return RedirectToAction("PublicationList");
+        }
+
         #region Helpers
         // Used for XSRF protection when adding external logins
         private const string XsrfKey = "XsrfId";
