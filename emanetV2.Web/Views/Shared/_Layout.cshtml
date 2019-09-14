@@ -30,7 +30,9 @@
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
         <div class="container">
-            <a class="navbar-brand js-scroll-trigger" href="#page-top">emaNET.com</a>
+            <ul class="navbar-brand js-scroll-trigger">
+                @Html.ActionLink("emaNET.com","Index")
+            </ul>
             <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                 Menu
                 <i class="fas fa-bars"></i>
@@ -38,26 +40,42 @@
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav text-uppercase ml-auto">
                     <li class="nav-item">
-                        <a class="nav-link js-scroll-trigger" href="#services">Services</a>
+                        <ul class="nav-link js-scroll-trigger">
+                            @Html.ActionLink("Anasayfa", "Index")
+                        </ul>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link js-scroll-trigger" href="#portfolio">Portfolio</a>
+                        <ul class="nav-link js-scroll-trigger">
+                            @Html.ActionLink("İlanlar", "PublicationList")
+                        </ul>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link js-scroll-trigger" href="#about">About</a>
+                        <ul class="nav-link js-scroll-trigger">
+                            @Html.ActionLink("Hakkımızda", "About")
+                        </ul>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link js-scroll-trigger" href="#team">Team</a>
+                        <ul class="nav-link js-scroll-trigger">
+                            @Html.ActionLink("İletişim", "Contact")
+                        </ul>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link js-scroll-trigger" href="#contact">Contact</a>
+                        <ul class="nav-link js-scroll-trigger">
+                            @Html.ActionLink("Üye Girişi", "Login", "Account")
+                        </ul>
                     </li>
+                    <li class="nav-item">
+                        <ul class="nav-link js-scroll-trigger">
+                            @Html.ActionLink("Kayıt Ol", "Register", "Account")
+                        </ul>
+                    </li>
+
+
+
                 </ul>
             </div>
         </div>
     </nav>
-
-
 
     <div style="margin:10px 10px">
         @RenderBody()
