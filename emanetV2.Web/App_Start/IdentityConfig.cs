@@ -11,6 +11,8 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security;
 using emanetV2.Web.Models;
+using emanetV2.Model;
+using emanetV2.Data;
 
 namespace emanetV2.Web
 {

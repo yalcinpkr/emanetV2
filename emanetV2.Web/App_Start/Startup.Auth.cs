@@ -6,6 +6,8 @@ using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.Google;
 using Owin;
 using emanetV2.Web.Models;
+using emanetV2.Data;
+using emanetV2.Model;
 
 namespace emanetV2.Web
 {
