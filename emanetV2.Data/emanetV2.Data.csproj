@@ -57,5 +57,11 @@
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\emanetV2.Model\emanetV2.Model.csproj">
+      <Project>{467345ca-9d39-4e7a-bcdb-734d54a8e24e}</Project>
+      <Name>emanetV2.Model</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

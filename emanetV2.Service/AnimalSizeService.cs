@@ -1,40 +1,87 @@
-﻿using System;
+﻿using emanetV2.Data;
+using emanetV2.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
 namespace emanetV2.Service
 {
-    public class AnimalService : IAnimalService
+    public class AnimalSizeService : IAnimalSizeService
     {
         private readonly IUnitOfWork _unitOfWork;
-        private readonly IRepository<Animal> _animalRepository;
+        private readonly IRepository<AnimalSize> _animalSizeRepository;
 
-        public AnimalService(IUnitOfWork unitOfWork, IRepository<Animal> animalRepository)
+        public AnimalSizeService(IUnitOfWork unitOfWork, IRepository<AnimalSize> animalSizeRepository)
         {
             _unitOfWork = unitOfWork;
-            _animalRepository = animalRepository;
+            _animalSizeRepository = animalSizeRepository;
+        }
+        public IList<AnimalSize> GetAllAdmin()
+        {
+            return _animalSizeRepository.GetAllAdmin() as IList<AnimalSize>;
+        }
+        public IList<AnimalSize> GetAllWeb()
+        {
+            return _animalSizeRepository.GetAllWeb() as IList<AnimalSize>;
+        }
+        public AnimalSize GetWeb(int? animalSizeId)
+        {
+            return _animalSizeRepository.GetWeb(animalSizeId);
+        }
+        public AnimalSize GetAdmin(int? animalSizeId)
+        {
+            return _animalSizeRepository.GetAdmin(animalSizeId);
+        }
+        public int New(AnimalSize newAnimalSize)
+        {
+            _animalSizeRepository.Insert(newAnimalSize);
+            _unitOfWork.SaveChanges();
+            return newAnimalSize.Id;
         }
 
-        public int New(Animal newAnimal)
+        public int Edit(AnimalSize editedAnimalSize)
         {
-            _animalRepository.Insert(newAnimal);
+            _animalSizeRepository.Update(editedAnimalSize);
             _unitOfWork.SaveChanges();
-            return newAnimal.Id;
+            return editedAnimalSize.Id;
         }
 
-        public int Edit(Animal editedAnimal)
+        public bool Publish(int? animalSizeId)
         {
-            _animalRepository.Update(editedAnimal);
+            _animalSizeRepository.Publish(animalSizeId);
             _unitOfWork.SaveChanges();
-            return editedAnimal.Id;
+            return true;
+        }
+
+        public bool Draft(int? animalSizeId)
+        {
+            _animalSizeRepository.Draft(animalSizeId);
+            _unitOfWork.SaveChanges();
+            return true;
+
+        }
+
+        public bool Remove(int? animalSizeId)
+        {
+            _animalSizeRepository.Remove(animalSizeId);
+            _unitOfWork.SaveChanges();
+            return true;
         }
     }
 
-    public interface IAnimalService
+    public interface IAnimalSizeService
     {
-        int New(Animal newAnimal);
-        int Edit(Animal editedAnimal);
+        IList<AnimalSize> GetAllAdmin();
+        IList<AnimalSize> GetAllWeb();
+        AnimalSize GetAdmin(int? animalSizeId);
+        AnimalSize GetWeb(int? animalSizeId);
+        int New(AnimalSize newAnimalSize);
+        int Edit(AnimalSize editedAnimalSize);
+        bool Publish(int? animalSizeId);
+        bool Draft(int? animalSizeId);
+        bool Remove(int? animalSizeId);
     }
 }

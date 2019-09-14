@@ -107,3 +107,7 @@ C:\Users\EcheloN\source\repos\emanetV2\emanetV2.Admin\obj\Debug\emanetV2.Admin.c
 C:\Users\EcheloN\source\repos\emanetV2\emanetV2.Admin\obj\Debug\emanetV2.Admin.csproj.CopyComplete
 C:\Users\EcheloN\source\repos\emanetV2\emanetV2.Admin\obj\Debug\emanetV2.Admin.dll
 C:\Users\EcheloN\source\repos\emanetV2\emanetV2.Admin\obj\Debug\emanetV2.Admin.pdb
+C:\Users\mehme\Source\Repos\yalcinpkr\emanetV2\emanetV2.Admin\obj\Debug\emanetV2.Admin.csprojAssemblyReference.cache
+C:\Users\mehme\Source\Repos\yalcinpkr\emanetV2\emanetV2.Admin\obj\Debug\emanetV2.Admin.csproj.CoreCompileInputs.cache
+C:\Users\mehme\Source\Repos\yalcinpkr\emanetV2\emanetV2.Admin\obj\Debug\emanetV2.Admin.dll
+C:\Users\mehme\Source\Repos\yalcinpkr\emanetV2\emanetV2.Admin\obj\Debug\emanetV2.Admin.pdb

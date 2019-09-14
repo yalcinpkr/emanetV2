@@ -1,4 +1,5 @@
-﻿using System;
+﻿using emanetV2.Admin.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -12,40 +13,6 @@ namespace emanetV2.Admin.Controllers
         {
             AdminListViewModel viewModel = new AdminListViewModel();
             return View(viewModel);
-        }
-
-        public ActionResult New()
-        {
-            return View();
-        }
-
-        [HttpPost]
-        public ActionResult New(AdminNewViewModel viewModel)
-        {
-            if (!ModelState.IsValid)
-                return View(viewModel);
-
-            return RedirectToAction("Edit", new { adminId = 1 });
-        }
-
-        public ActionResult Edit(int? adminId)
-        {
-            if (adminId == null)
-                return RedirectToAction("Index");
-
-            // Find Admin
-            // Admin to viewModel
-            AdminEditViewModel viewModel = new AdminEditViewModel();
-
-            return View(viewModel);
-        }
-        [HttpPost]
-        public ActionResult Edit(AdminEditViewModel viewModel)
-        {
-            if (!ModelState.IsValid)
-                return View(viewModel);
-
-            return View();
         }
 
         public ActionResult Publish(int? adminId)

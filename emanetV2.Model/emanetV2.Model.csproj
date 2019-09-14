@@ -41,9 +41,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Animal.cs" />
     <Compile Include="AnimalSize.cs" />
     <Compile Include="AnimalType.cs" />
     <Compile Include="BaseEntity.cs" />
+    <Compile Include="Member.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Publication.cs" />
     <Compile Include="Status.cs" />

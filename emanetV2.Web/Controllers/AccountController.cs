@@ -9,17 +9,30 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using emanetV2.Web.Models;
+using emanetV2.Service;
+using emanetV2.Model;
 
 namespace emanetV2.Web.Controllers
 {
+    
+    
+    
     [Authorize]
     public class AccountController : Controller
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
+        private readonly IPublicationService _publicationService;
+        private readonly IAnimalSizeService _animalSizeService;
+        private readonly IAnimalTypeService _animalTypeService;
 
-        public AccountController()
+
+        public AccountController(IPublicationService publicationService, IAnimalSizeService animalSizeService, IAnimalTypeService animalTypeService)
         {
+            _publicationService = publicationService;
+            _animalSizeService = animalSizeService;
+            _animalTypeService = animalTypeService;
+
         }
 
         public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager )

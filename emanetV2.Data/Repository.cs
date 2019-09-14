@@ -1,6 +1,9 @@
-﻿using System;
+﻿using emanetV2.Model;
+using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -107,10 +110,7 @@ namespace emanetV2.Data
             db.Entry<T>(entity).State = EntityState.Modified;
         }
 
-        public bool CheckLogin(string username, string password)
-        {
-            return db.Members.Any(m => m.Username == username && m.Password == password);
-        }
+       
 
         public IEnumerable<T> GetAllWeb()
         {
@@ -136,7 +136,7 @@ namespace emanetV2.Data
         bool Publish(int? id);
         bool Draft(int? id);
         bool Remove(int? id);
-        bool CheckLogin(string username, string password);
+       
     }
 }
 

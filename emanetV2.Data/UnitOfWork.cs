@@ -6,25 +6,24 @@ using System.Threading.Tasks;
 
 namespace emanetV2.Data
 {
-    class UnitOfWork
+
+    public class UnitOfWork : IUnitOfWork
     {
-        public class UnitOfWork : IUnitOfWork
-        {
-            private readonly ApplicationDbContext _db;
+        private readonly ApplicationDbContext _db;
 
-            public UnitOfWork(ApplicationDbContext context)
-            {
-                this._db = context;
-            }
-            public void SaveChanges()
-            {
-                _db.SaveChanges();
-            }
+        public UnitOfWork(ApplicationDbContext context)
+        {
+            this._db = context;
         }
-
-        public interface IUnitOfWork
+        public void SaveChanges()
         {
-            void SaveChanges();
+            _db.SaveChanges();
         }
     }
+
+    public interface IUnitOfWork
+    {
+        void SaveChanges();
+    }
 }
+

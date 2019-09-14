@@ -1,4 +1,6 @@
-﻿using System;
+﻿using emanetV2.Data;
+using emanetV2.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;

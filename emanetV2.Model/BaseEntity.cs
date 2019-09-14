@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace emanetV2.Model
 {
-    class BaseEntity
+    public class BaseEntity
     {
 
         public int Id { get; set; }

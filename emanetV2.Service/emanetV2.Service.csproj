@@ -41,11 +41,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AnimalService.cs" />
     <Compile Include="AnimalSizeService.cs" />
     <Compile Include="AnimalTypeService.cs" />
     <Compile Include="MemberService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PublicationService.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\emanetV2.Data\emanetV2.Data.csproj">
+      <Project>{02f492a6-ddbb-476b-8aa7-b764176ed3cc}</Project>
+      <Name>emanetV2.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\emanetV2.Model\emanetV2.Model.csproj">
+      <Project>{467345CA-9D39-4E7A-BCDB-734D54A8E24E}</Project>
+      <Name>emanetV2.Model</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

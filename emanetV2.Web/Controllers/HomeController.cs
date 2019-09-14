@@ -1,4 +1,6 @@
-﻿using System;
+﻿using emanetV2.Service;
+using emanetV2.Web.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -21,7 +23,7 @@ namespace emanetV2.Web.Controllers
         [Route]
         public ActionResult Index()
         {
-            HomepageViewModel viewModel = new HomepageViewModel()
+            HomePageViewModel viewModel = new HomePageViewModel()
             {
                 LastPublications = _publicationService.GetLastTenPublicationWeb()
             };
