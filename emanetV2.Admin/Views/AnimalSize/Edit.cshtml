@@ -1,7 +1,45 @@
-﻿
+﻿@using emanetV2.Model
+@model emanetV2.Admin.Models.AnimalSizeEditViewModel
 @{
     ViewBag.Title = "Edit";
 }
 
-<h2>Edit</h2>
+@using (@Html.BeginForm())
+{
+    @Html.HiddenFor(model => model.Id)
+    <div class="form-horizontal">
+
+        @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+        <div class="form-group">
+            <div class="col-md-2">
+                @Html.DisplayNameFor(model => model.Name)
+            </div>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-2">
+                @Html.DisplayNameFor(model => model.StatusId)
+            </div>
+            <div class="col-md-10">
+                <select class="form-control" id="StatusId" name="StatusId">
+                    <option value="@((int)Statuses.Published)">Yayında</option>
+                    <option selected value="@((int)Statuses.Draft)">Taslak</option>
+                </select>
+                @Html.ValidationMessageFor(model => model.StatusId, "", new { @class = "text-danger" })
+            </div>
+
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md">
+
+            <input type="submit" value="Oluştur" class="btn btn-primary" />
+            @Html.ActionLink("Geri Dön", "Index", "AnimalSize", null, new { @class = "btn btn-primary" })
+        </div>
+    </div>
+}
 

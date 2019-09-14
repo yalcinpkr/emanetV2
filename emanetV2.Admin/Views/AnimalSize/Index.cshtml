@@ -1,7 +1,40 @@
-﻿
+﻿@model emanetV2.Admin.Models.AnimalSizeListViewModel
 @{
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<p>
+    @Html.ActionLink("Yeni Hayvan Türü", "New", "AnimalSize", null, new { @class = "btn btn-primary" })
+</p>
 
+<table class="table table-bordered" id="dataTable">
+    <thead>
+        <tr>
+            <th>Hayvan Boyutu Id</th>
+            <th>Hayvan Boyutu</th>
+            <th>Durumu</th>
+
+
+            <th nowrap>Eylemler</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var animalSize in Model.AnimalSizes)
+        {
+            <tr>
+                <td>@animalSize.Id</td>
+                <td>@animalSize.Name</td>
+                <td>@animalSize.Status.Name</td>
+
+
+
+                <td>
+                    <a href="@Url.Action("Edit", new {id = animalSize.Id})" class="btn btn-success btn-sm">Düzenle</a>
+                    <a href="@Url.Action("Draft", new {id = animalSize.Id})" class="btn btn-warning btn-sm">Taslak</a>
+                    <a href="@Url.Action("Publish", new {id = animalSize.Id})" class="btn btn-info btn-sm">Yayınla</a>
+                    <a href="@Url.Action("Remove", new {id = animalSize.Id})" class="btn btn-danger btn-sm" onclick="return confirm('Bu kaydı silmek istediğinize emin misiniz?');">Sil</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -1,7 +1,50 @@
-﻿
+﻿@model emanetV2.Web.Models.MemberPublicationListViewModel
+
 @{
-    ViewBag.Title = "PublicationList";
+    ViewBag.Title = "İlanlarım";
 }
+<div class="form-horizontal" style="margin-top:10%">
+    <p>
+        @Html.ActionLink("Yeni İlan Ekle", "NewPublication", "Member", null, new { @class = "btn btn-primary" })
+    </p>
 
-<h2>PublicationList</h2>
+    <table class="table table-bordered" id="dataTable">
+        <thead>
+            <tr>
+                <th>İlan Numarası</th>
+                <th>Başlık</th>
+                <th>Açıklama</th>
+                <th>Detaylı Bilgi</th>
+                <th>Hayvan Boyutu</th>
+                <th>Hayvan Türü</th>
 
+
+
+                <th nowrap>Eylemler</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var publication in Model.Publications)
+            {
+                <tr>
+                    <td>@publication.Id</td>
+                    <td>@publication.Title</td>
+                    <td>@publication.Description</td>
+                    <td>@publication.Note</td>
+                    <td>@publication.AnimalSize.Name</td>
+                    <td>@publication.AnimalType.Name</td>
+
+
+
+                    <td>
+                        <a href="@Url.Action("EditPublication", new {id = publication.Id})" class="btn btn-success btn-sm">Düzenle</a>
+                        <a href="@Url.Action("Draft", new {id = publication.Id})" class="btn btn-warning btn-sm">Taslak</a>
+                        <a href="@Url.Action("Publish", new {id = publication.Id})" class="btn btn-info btn-sm">Yayınla</a>
+                        <a href="@Url.Action("Remove", new {id = publication.Id})" class="btn btn-danger btn-sm" onclick="return confirm('Bu kaydı silmek istediğinize emin misiniz?');">Sil</a>
+                    </td>
+                </tr>
+            }
+
+        </tbody>
+    </table>
+</div>

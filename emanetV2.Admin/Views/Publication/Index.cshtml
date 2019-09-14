@@ -1,7 +1,55 @@
-﻿
-@{
-    ViewBag.Title = "Index";
-}
+﻿@model emanetV2.Admin.Models.PublicationListViewModel
 
-<h2>Index</h2>
+@{
+    ViewBag.Title = "İlan Listesi";
+}
+@*<p>
+        @Html.ActionLink("İlan Ekle", "New", "Publication", null, new { @class = "btn btn-primary" })
+    </p>
+*@
+
+<table class="table table-bordered" id="dataTable">
+    <thead>
+        <tr>
+            <th>İlan Numarası</th>
+            <th>İlan Veren Kullanıcı</th>
+            <th>Başlık</th>
+            <th>Açıklama</th>
+            <th>Detaylı Bilgi</th>
+            <th>Slug</th>
+            <th>Hayvan Boyutu</th>
+            <th>Hayvan Türü</th>
+            <th>İlan Durumu</th>
+
+
+            <th nowrap>Eylemler</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var publication in Model.Publications)
+        {
+            <tr>
+                <td>@publication.Id</td>
+                <td>@publication.MemberId</td>
+                <td>@publication.Title</td>
+                <td>@publication.Description</td>
+                <td>@publication.Note</td>
+                <td>@publication.Slug</td>
+                <td>@publication.AnimalSize.Name</td>
+                <td>@publication.AnimalType.Name</td>
+                <td>@publication.Status.Name</td>
+
+
+
+
+                <td>
+                    <a href="@Url.Action("Edit", new {id = publication.Id})" class="btn btn-success btn-sm">Düzenle</a>
+                    <a href="@Url.Action("Draft", new {id = publication.Id})" class="btn btn-warning btn-sm">Taslak</a>
+                    <a href="@Url.Action("Publish", new {id = publication.Id})" class="btn btn-info btn-sm">Yayınla</a>
+                    <a href="@Url.Action("Remove", new {id = publication.Id})" class="btn btn-danger btn-sm" onclick="return confirm('Bu kaydı silmek istediğinize emin misiniz?');">Sil</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
 

@@ -1,7 +1,31 @@
-﻿
+﻿@model emanetV2.Web.Models.PublicationDetailViewModel
+
 @{
-    ViewBag.Title = "PublicationDetail";
+    ViewBag.Title = "İlan Detayları";
 }
 
-<h2>PublicationDetail</h2>
+<div class="container">
+    <div class="row">
+        @foreach (var item in Model.Publications)
+        {
+            <div class="col-lg-8 mx-auto">
+                <div class="modal-body">
+                    <!-- Project Details Go Here -->
+                    <h2 class="text-uppercase">@item.Title</h2>
+                    <p class="item-intro text-muted">@item.Description</p>
+                    <!-- <img class="img-fluid d-block mx-auto" src="img/portfolio/01-full.jpg" alt=""> -->
+                    <p>@item.AnimalSize.Name</p>
+                    <p>@item.AnimalType.Name</p>
+                    <ul class="list-inline">
+                        <li>@item.Note</li>
 
+                    </ul>
+                    <button class="btn btn-primary" data-dismiss="modal" type="button">
+                        <i class="fas fa-times"></i>
+                        Close Project
+                    </button>
+                </div>
+            </div>
+        }
+    </div>
+</div>
