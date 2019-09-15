@@ -17,6 +17,7 @@ namespace emanetV2.Web.Models
 
         [DataType(DataType.MultilineText)]
         public string Note { get; set; }
+        public string Photo { get; set; }
 
         // Publication
         public int Id { get; set; }
