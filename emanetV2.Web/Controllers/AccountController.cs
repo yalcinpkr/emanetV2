@@ -473,15 +473,15 @@ namespace emanetV2.Web.Controllers
 
         }
 
-        public ActionResult EditPublication(int? publicationId)
+        public ActionResult EditPublication(int? Id)
         {
             ViewBag.AnimalSizeId = new SelectList(_animalSizeService.GetAllWeb(), "Id", "Name");
             ViewBag.AnimalTypeId = new SelectList(_animalTypeService.GetAllWeb(), "Id", "Name");
 
-            if (publicationId == null)
+            if (Id == null)
                 return RedirectToAction("PublicationList");
 
-            var findPublication = _publicationService.GetAdmin(publicationId);
+            var findPublication = _publicationService.GetAdmin(Id);
 
             if (findPublication == null)
                 return RedirectToAction("PublicationList");
@@ -520,30 +520,14 @@ namespace emanetV2.Web.Controllers
             return RedirectToAction("PublicationList");
         }
 
-        public ActionResult PublishPublication(int? publicationId)
+       
+
+        public ActionResult RemovePublication(int? Id)
         {
-            if (publicationId == null)
+            if (Id == null)
                 return RedirectToAction("PublicationList");
 
-            // Publish
-            return RedirectToAction("PublicationList");
-        }
-
-        public ActionResult DraftPublication(int? publicationId)
-        {
-            if (publicationId == null)
-                return RedirectToAction("PublicationList");
-
-            // Draft
-            return RedirectToAction("PublicationList");
-        }
-
-        public ActionResult RemovePublication(int? publicationId)
-        {
-            if (publicationId == null)
-                return RedirectToAction("PublicationList");
-
-            // Remove
+            _publicationService.Remove(Id);
             return RedirectToAction("PublicationList");
         }
 

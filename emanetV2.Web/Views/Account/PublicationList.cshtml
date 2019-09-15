@@ -5,7 +5,7 @@
 }
 <div class="form-horizontal" style="margin-top:10%">
     <p>
-        @Html.ActionLink("Yeni İlan Ekle", "NewPublication", "Member", null, new { @class = "btn btn-primary" })
+        @Html.ActionLink("Yeni İlan Ekle", "NewPublication", "Account", null, new { @class = "btn btn-primary" })
     </p>
 
     <table class="table table-bordered" id="dataTable">
@@ -17,6 +17,7 @@
                 <th>Detaylı Bilgi</th>
                 <th>Hayvan Boyutu</th>
                 <th>Hayvan Türü</th>
+                <th>İlan Durumu</th>
 
 
 
@@ -26,23 +27,22 @@
         <tbody>
             @foreach (var publication in Model.Publications)
             {
-                <tr>
-                    <td>@publication.Id</td>
-                    <td>@publication.Title</td>
-                    <td>@publication.Description</td>
-                    <td>@publication.Note</td>
-                    <td>@publication.AnimalSize.Name</td>
-                    <td>@publication.AnimalType.Name</td>
+            <tr>
+                <td>@publication.Id</td>
+                <td>@publication.Title</td>
+                <td>@publication.Description</td>
+                <td>@publication.Note</td>
+                <td>@publication.AnimalSize.Name</td>
+                <td>@publication.AnimalType.Name</td>
+                <td>@publication.Status.Name</td>
 
 
 
-                    <td>
-                        <a href="@Url.Action("EditPublication", new {id = publication.Id})" class="btn btn-success btn-sm">Düzenle</a>
-                        <a href="@Url.Action("Draft", new {id = publication.Id})" class="btn btn-warning btn-sm">Taslak</a>
-                        <a href="@Url.Action("Publish", new {id = publication.Id})" class="btn btn-info btn-sm">Yayınla</a>
-                        <a href="@Url.Action("Remove", new {id = publication.Id})" class="btn btn-danger btn-sm" onclick="return confirm('Bu kaydı silmek istediğinize emin misiniz?');">Sil</a>
-                    </td>
-                </tr>
+                <td>
+                    <a href="@Url.Action("EditPublication","Account", new {id = publication.Id})" class="btn btn-success btn-sm">Düzenle</a>
+                    <a href="@Url.Action("RemovePublication", new {id = publication.Id})" class="btn btn-danger btn-sm" onclick="return confirm('Bu kaydı silmek istediğinize emin misiniz?');">Sil</a>
+                </td>
+            </tr>
             }
 
         </tbody>
