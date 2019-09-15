@@ -45,10 +45,13 @@ namespace emanetV2.Web.Controllers
 
 
         [Route("ilanlar/{publicationSlug}")]
-        public ActionResult PublicationDetail(int publication)
+        public ActionResult PublicationDetail(int id)
         {
             // Find Publication via slug
-            PublicationDetailViewModel viewModel = new PublicationDetailViewModel();
+            PublicationDetailViewModel viewModel = new PublicationDetailViewModel()
+            {
+                Publications=_publicationService.GetAllWeb()
+            };
 
             return View(viewModel);
         }

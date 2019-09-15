@@ -4,28 +4,25 @@
     ViewBag.Title = "İlan Detayları";
 }
 
-<div class="container">
-    <div class="row">
-        @foreach (var item in Model.Publications)
-        {
-            <div class="col-lg-8 mx-auto">
-                <div class="modal-body">
-                    <!-- Project Details Go Here -->
-                    <h2 class="text-uppercase">@item.Title</h2>
-                    <p class="item-intro text-muted">@item.Description</p>
-                    <!-- <img class="img-fluid d-block mx-auto" src="img/portfolio/01-full.jpg" alt=""> -->
-                    <p>@item.AnimalSize.Name</p>
-                    <p>@item.AnimalType.Name</p>
-                    <ul class="list-inline">
-                        <li>@item.Note</li>
+<div class="row">
 
-                    </ul>
-                    <button class="btn btn-primary" data-dismiss="modal" type="button">
-                        <i class="fas fa-times"></i>
-                        Close Project
-                    </button>
+    @foreach (var item in Model.Publications)
+    {
+
+        <div class="col-md-3 mx-2 my-2 style="border:solid 1px">
+            <div class="card d-block" style="height:250px;">
+                <img src="~/Uploads/@item.Photo" class="card-img-top" alt="@item.Title">
+                <div class="card-body">
+                    <h5 class="card-title">@item.Title</h5>
+                    <p class="card-text">@item.Description</p>
+                    <p class="card-text">@item.Note</p>
+                    <p class="card-text">@item.AnimalSize.Name</p>
+                    <p class="card-text">@item.AnimalType.Name</p>
+                    <a href="@Url.Action("PublicationDetail","Home","Web")" class="btn btn-primary" style="position:absolute;bottom:10px;right:15px;">Ayrıntılar</a>
                 </div>
             </div>
-        }
-    </div>
+        </div>
+
+    }
 </div>
+
