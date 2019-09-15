@@ -24,7 +24,6 @@ namespace emanetV2.Web.Models
         public string Title { get; set; }
         public string Slug { get; set; }
         public string Description { get; set; }
-
         public IList<AnimalType> AnimalTypes { get; set; }
         public IList<AnimalSize> AnimalSizes { get; set; }
 

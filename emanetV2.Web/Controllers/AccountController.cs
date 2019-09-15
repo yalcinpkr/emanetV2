@@ -469,8 +469,8 @@ namespace emanetV2.Web.Controllers
             catch (Exception e)
             {
                 Console.WriteLine(e);
-                TempData["Message"] = "You are not authorized."+e;
-                
+                TempData["Message"] = "HATA OLUŞTU." + e;
+
             }
 
             newPublication.Id = viewModel.Id;
@@ -480,7 +480,6 @@ namespace emanetV2.Web.Controllers
             newPublication.Note = viewModel.Note;
             newPublication.AnimalSizeId = viewModel.AnimalSizeId;
             newPublication.AnimalTypeId = viewModel.AnimalTypeId;
-            newPublication.Photo = viewModel.Photo;
             newPublication.StatusId = (int)Statuses.Draft;
 
             _publicationService.New(newPublication);
@@ -545,11 +544,12 @@ namespace emanetV2.Web.Controllers
         {
             ViewBag.AnimalSizeId = new SelectList(_animalSizeService.GetAllWeb(), "Id", "Name");
             ViewBag.AnimalTypeId = new SelectList(_animalTypeService.GetAllWeb(), "Id", "Name");
+            
 
             if (Id == null)
                 return RedirectToAction("PublicationList");
 
-            var findPublication = _publicationService.GetAdmin(Id);
+            var findPublication = _publicationService.GetWeb(Id);
 
             if (findPublication == null)
                 return RedirectToAction("PublicationList");
@@ -560,6 +560,7 @@ namespace emanetV2.Web.Controllers
                 Description = findPublication.Description,
                 Slug = findPublication.Slug,
                 Note = findPublication.Note,
+                Photo = findPublication.Photo,
                 AnimalSizeId = findPublication.AnimalSizeId,
                 AnimalTypeId = findPublication.AnimalTypeId,
                 StatusId = (int)Statuses.Draft
@@ -567,17 +568,18 @@ namespace emanetV2.Web.Controllers
             return View(viewModel);
         }
         [HttpPost]
-        public ActionResult EditPublication(MemberPublicationEditViewModel viewModel)
+        [ValidateInput(false)]
+        public ActionResult EditPublication(MemberPublicationEditViewModel viewModel, HttpPostedFileBase upload)
         {
             if (!ModelState.IsValid)
                 return View(viewModel);
 
             Publication editedMemberPublication = new Publication()
             {
-                Id = viewModel.Id,
+             
                 Title = viewModel.Title,
                 Description = viewModel.Description,
-                Slug = viewModel.Slug,
+                Photo = UploadFile(upload),
                 Note = viewModel.Note,
                 AnimalSizeId = viewModel.AnimalSizeId,
                 AnimalTypeId = viewModel.AnimalTypeId,

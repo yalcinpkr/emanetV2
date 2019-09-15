@@ -18,6 +18,8 @@ namespace emanetV2.Web.Models
         public int StatusId { get; set; }
         public int Id { get; set; }
         public string Title { get; set; }
+       
+        public string Photo { get; set; }
         public string Slug { get; set; }
 
         public string Description { get; set; }
