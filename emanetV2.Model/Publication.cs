@@ -14,6 +14,7 @@ namespace emanetV2.Model
         public string Slug { get; set; }
 
         public string Description { get; set; }
+        public string Photo { get; set; }
         public string Note { get; set; }
         public int AnimalTypeId { get; set; }
         public virtual AnimalType AnimalType { get; set; }

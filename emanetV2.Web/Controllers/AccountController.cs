@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Globalization;
+using System.IO;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
@@ -446,31 +447,98 @@ namespace emanetV2.Web.Controllers
             return View(viewModel);
         }
 
+        //PUBLICATION
         public ActionResult NewPublication()
         {
+            var newPublication = new Publication();
             ViewBag.AnimalSizeId = new SelectList(_animalSizeService.GetAllWeb(), "Id", "Name");
             ViewBag.AnimalTypeId = new SelectList(_animalTypeService.GetAllWeb(), "Id", "Name");
             return View();
         }
         [HttpPost]
-        public ActionResult NewPublication(MemberNewPublicationViewModel viewModel)
+        public ActionResult NewPublication(MemberNewPublicationViewModel viewModel, HttpPostedFileBase upload)
         {
             if (!ModelState.IsValid)
                 return View(viewModel);
-            var newPublication = new Publication()
+            var newPublication = new Publication();
+
+            try
             {
-                Id = viewModel.Id,
-                Title = viewModel.Title,
-                Description = viewModel.Description,
-                Slug = viewModel.Slug,
-                Note = viewModel.Note,
-                AnimalSizeId = viewModel.AnimalSizeId,
-                AnimalTypeId = viewModel.AnimalTypeId,
-                StatusId = (int)Statuses.Draft
-            };
+                newPublication.Photo = UploadFile(upload);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                TempData["Message"] = "You are not authorized."+e;
+                
+            }
+
+            newPublication.Id = viewModel.Id;
+            newPublication.Title = viewModel.Title;
+            newPublication.Description = viewModel.Description;
+            newPublication.Slug = viewModel.Slug;
+            newPublication.Note = viewModel.Note;
+            newPublication.AnimalSizeId = viewModel.AnimalSizeId;
+            newPublication.AnimalTypeId = viewModel.AnimalTypeId;
+            newPublication.Photo = viewModel.Photo;
+            newPublication.StatusId = (int)Statuses.Draft;
+
             _publicationService.New(newPublication);
             return RedirectToAction("Index", "Home");
 
+        }
+
+        public string UploadFile(HttpPostedFileBase upload)
+        {
+            //Yüklenmek istenen dosya var mı?
+            if (upload != null && upload.ContentLength > 0)
+            {
+                //Dosyaanın uzantısını kontrol et
+                var extension = Path.GetExtension(upload.FileName).ToLower();
+                if (extension == ".jpg" || extension == ".jpeg" || extension == ".gif" || extension == ".png")
+                {
+                    //Uzantı Doğruysa dosyanın yükleneceği Uploads dizini var mı kontrol et
+                    if (Directory.Exists(Server.MapPath("~/Uploads")))
+                    {
+                        //Dosya adındaki geçersiz karakterleri düzelt
+                        string fileName = upload.FileName.ToLower();
+                        fileName = fileName.Replace("İ", "i");
+                        fileName = fileName.Replace("Ş", "s");
+                        fileName = fileName.Replace("Ğ", "g");
+                        fileName = fileName.Replace("ı", "i");
+                        fileName = fileName.Replace("ö", "o");
+                        fileName = fileName.Replace("ü", "u");
+                        fileName = fileName.Replace("ç", "c");
+                        fileName = fileName.Replace("ğ", "g");
+                        fileName = fileName.Replace("(", "");
+                        fileName = fileName.Replace(" ", "-");
+                        fileName = fileName.Replace(",", "");
+                        fileName = fileName.Replace(" ", ""); //Burada Boşluk Olacak
+                        fileName = fileName.Replace("`", "");
+                        fileName = fileName.Replace("?", "-");
+                        fileName = fileName.Replace("%", "-");
+
+                        //Aynı isimde dosya olabilir diye dosya adının önüne zaman pulu ekliyoruz
+                        //guid kullanılabilir profesyonel sitelerde
+                        fileName = DateTime.Now.Ticks.ToString() + fileName;
+
+                        //Dosyayı Uploads Dizinine Yükle
+                        upload.SaveAs(Path.Combine(Server.MapPath("~/Uploads"), fileName));
+
+                        //Yüklenen Dosyanın adını geri döndür
+                        return fileName;
+                    }
+                    else
+                    {
+                        throw new Exception("Upload dizini mevcut değil");
+                    }
+                }
+                else
+                {
+                    throw new Exception("Geçerli bir Dosya uzantısı seçiniz (.jpg .jpeg .gif .png)");
+                }
+            }
+            return null;
         }
 
         public ActionResult EditPublication(int? Id)
