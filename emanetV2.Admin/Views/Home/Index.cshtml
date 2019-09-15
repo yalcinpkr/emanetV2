@@ -1,9 +1,41 @@
-﻿@{
+﻿@model emanetV2.Admin.Models.PublicationListViewModel
+@{
     ViewBag.Title = "Home Page";
 }
 
-<div class="jumbotron">
-    <h1>Yönetici Sayfasına Hoş Geldiniz.</h1>
-    
-</div>
+<table class="table table-bordered" id="dataTable">
+    <thead>
+        <tr>
+            <th>İlan Numarası</th>
+            <th>İlan Veren Kullanıcı</th>
+            <th>Başlık</th>
+            <th>Açıklama</th>
+            <th>Detaylı Bilgi</th>
+            <th>Slug</th>
+            <th>Hayvan Boyutu</th>
+            <th>Hayvan Türü</th>
+            <th>İlan Durumu</th>
+
+
+            <th nowrap>Eylemler</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var publication in Model.Publications)
+        {
+            <tr>
+                <td>@publication.Id</td>
+                <td>@publication.MemberId</td>
+                <td>@publication.Title</td>
+                <td>@publication.Description</td>
+                <td>@publication.Note</td>
+                <td>@publication.Slug</td>
+                <td>@publication.AnimalSize.Name</td>
+                <td>@publication.AnimalType.Name</td>
+                <td>@publication.Status.Name</td>
+
+            </tr>
+        }
+    </tbody>
+</table>
 

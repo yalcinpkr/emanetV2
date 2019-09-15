@@ -1,4 +1,5 @@
 ﻿using emanetV2.Admin.Models;
+using emanetV2.Service;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,9 +11,18 @@ namespace emanetV2.Admin.Controllers
     [Authorize]
     public class HomeController : Controller
     {
+        private readonly IPublicationService _publicationService;
+        public HomeController(IPublicationService publicationService)
+        {
+            _publicationService = publicationService;
+            
+        }
         public ActionResult Index()
         {
-            AdminListViewModel viewModel = new AdminListViewModel();
+            PublicationListViewModel viewModel = new PublicationListViewModel()
+            {
+                Publications = _publicationService.GetAllAdmin()
+            };
             return View(viewModel);
         }
 
