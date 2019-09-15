@@ -9,6 +9,7 @@ using System.Web.Mvc;
 
 namespace emanetV2.Admin.Controllers
 {
+    [Authorize]
     public class AnimalTypeController : Controller
     {
         // GET: AnimalType

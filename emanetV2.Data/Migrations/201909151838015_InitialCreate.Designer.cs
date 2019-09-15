@@ -13,7 +13,7 @@ namespace emanetV2.Data.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201909151802218_InitialCreate"; }
+            get { return "201909151838015_InitialCreate"; }
         }
         
         string IMigrationMetadata.Source
