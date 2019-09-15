@@ -24,17 +24,18 @@
     <link href="/css/agency.min.css" rel="stylesheet">
 
 </head>
-@if (Request.IsAuthenticated)
+<body id="page-top">
+    @if (Request.IsAuthenticated)
 
-{
+    {
 
-    <body id="page-top">
+
 
         <!-- Navigation -->
         <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
             <div class="container">
                 <ul class="navbar-brand js-scroll-trigger">
-                    @Html.ActionLink("emaNET.com", "Index","Home")
+                    @Html.ActionLink("emaNET.com", "Index", "Home")
                 </ul>
                 <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                     Menu
@@ -123,13 +124,13 @@
         <!-- Custom scripts for this template -->
         <script src="/js/agency.min.js"></script>
 
-    </body>
 
-}
 
-else
-{
-    <body id="page-top">
+    }
+
+    else
+    {
+
 
         <!-- Navigation -->
         <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
@@ -231,11 +232,11 @@ else
         <!-- Custom scripts for this template -->
         <script src="/js/agency.min.js"></script>
 
-    </body>
 
 
-}
 
+    }
 
+</body>
 
 </html>

@@ -8,6 +8,7 @@ using System.Web.Mvc;
 
 namespace emanetV2.Admin.Controllers
 {
+    [Authorize]
     public class MemberController : Controller
     {
         // GET: Member
