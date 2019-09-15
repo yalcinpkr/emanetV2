@@ -1,7 +1,6 @@
-using emanetV2.Model;
-
 namespace emanetV2.Data.Migrations
 {
+    using emanetV2.Model;
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
@@ -21,10 +20,11 @@ namespace emanetV2.Data.Migrations
             //  You can use the DbSet<T>.AddOrUpdate() helper extension method 
             //  to avoid creating duplicate seed data.
             context.Statuses.AddOrUpdate(x => x.Id,
-                new Status() { Id = 1, Name = "Yayýnda" },
-                new Status() { Id = 2, Name = "Taslak" },
-                new Status() { Id = 3, Name = "Silindi" }
-            );
+            new Status() { Id = 1, Name = "Yayýnda" },
+  new Status() { Id = 2, Name = "Taslak" },
+  new Status() { Id = 3, Name = "Silindi" }
+                         );
+
         }
     }
 }
