@@ -44,13 +44,28 @@ namespace emanetV2.Web.Controllers
         }
 
 
+   
+
         [Route("ilanlar/{publicationSlug}")]
-        public ActionResult PublicationDetail(int id)
+        public ActionResult PublicationDetail(int? id)
         {
-            // Find Publication via slug
-            PublicationDetailViewModel viewModel = new PublicationDetailViewModel()
+            if (id == null)
+                return RedirectToAction("Error");
+
+            var finPublication = _publicationService.GetWeb(id);
+            if (finPublication == null)
+                return RedirectToAction("Error");
+
+            var viewModel = new DetailsViewModel()
             {
-                Publications=_publicationService.GetAllWeb()
+                Photo = finPublication.Photo,
+                AnimalSize = finPublication.AnimalSize.Name,
+                Description = finPublication.Description,
+                AnimalType = finPublication.AnimalType.Name,
+                Note = finPublication.Note,
+                Slug = finPublication.Slug,
+                Title = finPublication.Title,
+               
             };
 
             return View(viewModel);

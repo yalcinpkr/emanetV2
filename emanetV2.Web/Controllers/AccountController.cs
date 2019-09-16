@@ -100,7 +100,7 @@ namespace emanetV2.Web.Controllers
                     return RedirectToAction("SendCode", new { ReturnUrl = returnUrl, RememberMe = model.RememberMe });
                 case SignInStatus.Failure:
                 default:
-                    ModelState.AddModelError("", "Invalid login attempt.");
+                    ModelState.AddModelError("", "Geçersiz giriş denemesi");
                     return View(model);
             }
         }
@@ -113,7 +113,7 @@ namespace emanetV2.Web.Controllers
             // Require that the user has already logged in via username/password or external login
             if (!await SignInManager.HasBeenVerifiedAsync())
             {
-                return View("Error");
+                return View("HATA");
             }
             return View(new VerifyCodeViewModel { Provider = provider, ReturnUrl = returnUrl, RememberMe = rememberMe });
         }
@@ -576,11 +576,12 @@ namespace emanetV2.Web.Controllers
 
             Publication editedMemberPublication = new Publication()
             {
-             
+                Id = viewModel.Id,
                 Title = viewModel.Title,
                 Description = viewModel.Description,
                 Photo = UploadFile(upload),
                 Note = viewModel.Note,
+                Slug = viewModel.Slug,
                 AnimalSizeId = viewModel.AnimalSizeId,
                 AnimalTypeId = viewModel.AnimalTypeId,
                 StatusId = (int)Statuses.Draft,
