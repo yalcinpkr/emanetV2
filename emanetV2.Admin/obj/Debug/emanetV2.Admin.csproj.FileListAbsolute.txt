@@ -510,7 +510,6 @@ C:\Users\EcheloN\Source\Repos\yalcinpkr\emanetV2\emanetV2.Admin\bin\WebGrease.dl
 C:\Users\EcheloN\Source\Repos\yalcinpkr\emanetV2\emanetV2.Admin\bin\emanetV2.Data.pdb
 C:\Users\EcheloN\Source\Repos\yalcinpkr\emanetV2\emanetV2.Admin\bin\emanetV2.Data.dll.config
 C:\Users\EcheloN\Source\Repos\yalcinpkr\emanetV2\emanetV2.Admin\bin\emanetV2.Model.pdb
-C:\Users\EcheloN\Source\Repos\yalcinpkr\emanetV2\emanetV2.Admin\bin\emanetV2.Model.dll.config
 C:\Users\EcheloN\Source\Repos\yalcinpkr\emanetV2\emanetV2.Admin\bin\emanetV2.Service.pdb
 C:\Users\EcheloN\Source\Repos\yalcinpkr\emanetV2\emanetV2.Admin\bin\Autofac.pdb
 C:\Users\EcheloN\Source\Repos\yalcinpkr\emanetV2\emanetV2.Admin\bin\Autofac.xml

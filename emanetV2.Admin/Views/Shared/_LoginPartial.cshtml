@@ -4,8 +4,8 @@
     using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
     {
     @Html.AntiForgeryToken()
-
-    <ul class="nav navbar-nav navbar-right">
+       
+    <ul class="nav navbar-nav navbar-right" >
         <li>
             @Html.ActionLink("Hoş Geldiniz" + User.Identity.GetUserName(), "Index", "Account", routeValues: null, htmlAttributes: new { title = "Manage" })
         </li>
@@ -15,17 +15,18 @@
 }
 else
 {
-<ul class="nav navbar-nav navbar-right">
-    <li class="nav-item">
-        <ul class="nav-link js-scroll-trigger">
-            <li>@Html.ActionLink("Yönetici Girişi", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
-        </ul>
-    </li>
-    <li class="nav-item">
-        <ul class="nav-link js-scroll-trigger">
-            <li>@Html.ActionLink("Admin Ekle", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
-        </ul>
-    </li>
+    <ul class="nav navbar-nav navbar-right">
+        <li class="nav-item">
+            <ul class="nav-link js-scroll-trigger">
+                <li>@Html.ActionLink("Yönetici Girişi", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+            </ul>
+        </li>
+        <li class="nav-item">
+            <ul class="nav-link js-scroll-trigger">
+                <li>@Html.ActionLink("Admin Ekle", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
+            </ul>
+        </li>
    
-</ul>
+    </ul>
+    
 }
